@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Hyper Drive | Buses</title>
         <meta charset="UTF-8" />
-        <title>HyperDrive | Buses</title>
+        <title>Page</title>
         <style>
             body{
                 margin:0;
@@ -50,72 +50,7 @@
                 font-style: normal;
             }
         </style>
-        <script>
-            // Declare answer, firstInput, and secondInput variables
-            
-            var answer;
-            var firstInput;
-            var secondInput;
-            
-            
-            function output() {
-                const desStopSelect = document.getElementById("desStopSelect");
-                const selectedDesStop = desStopSelect.value;
-                const busStopSelect = document.getElementById("busStopSelect");
-                const selectedBusStop = busStopSelect.value;
-            
-                if (selectedBusStop === "W001") {
-                    firstInput = 15;
-                } else if (selectedBusStop === "W002") {
-                    firstInput = 22;
-                } else if (selectedBusStop === "W003") {
-                    firstInput = 33;
-                } else if (selectedBusStop === "S001") {
-                    firstInput = 53;
-                } else if (selectedBusStop === "S002") {
-                    firstInput = 60;
-                } else if (selectedBusStop === "S003") {
-                    firstInput = 67;
-                } else if (selectedBusStop === "P001") {
-                    firstInput = 74;
-                } else if (selectedBusStop === "P002") {
-                    firstInput = 82;
-                } else if (selectedBusStop === "P003") {
-                    firstInput = 90;
-                }
-            
-                if (selectedDesStop === "P001") {
-                    secondInput = 74;
-                } else if (selectedDesStop === "P002") {
-                    secondInput = 82;
-                } else if (selectedDesStop === "P003") {
-                    secondInput = 90;
-                } else if (selectedDesStop === "W001") {
-                    secondInput = 15;
-                } else if (selectedDesStop === "W002") {
-                    secondInput = 23;
-                } else if (selectedDesStop === "W003") {
-                    secondInput = 33;
-                } else if (selectedDesStop === "S001") {
-                    secondInput = 53;
-                } else if (selectedDesStop === "S002") {
-                    secondInput = 60;
-                } else if (selectedDesStop === "S003") {
-                    secondInput = 67;
-                }
-                answer = secondInput - firstInput;
-                if (secondInput < firstInput) {
-                    answer = Math.abs(answer) + 25;
-                }
-            
-                // Update the outputText content
-                const outputText = document.getElementById("outputText");
-                outputText.textContent = `It will take you ${answer} minutes to get from ${selectedBusStop} to ${selectedDesStop}.`;
-            }
-            
-                const submitButton = document.getElementById("submitButton");
-                submitButton.addEventListener("click", output);
-        </script>   
+        
     </head>
     <body>
         <div class = "topnav">
@@ -128,135 +63,7 @@
         </div>
         <img style = "position: absolute;left: 0%; width:100%;opacity:0.5;" src="Broward-County.jpg">
         <div id = "container">
-            <h2>Select your city:</h2>
-            <select id="citySelect" name="city">
-                <option value="Plantation">Plantation</option>
-                <option value="Sunrise">Sunrise</option>
-                <option value="Weston">Weston</option>
-            </select>
-            
-            <h2 id="busStopLabel">Select a bus stop in your city:</h2>
-
-            <select id="busStopSelect" name="busStop" >
-            
-            </select>
-            <script>
-            const citySelect = document.getElementById("citySelect");
-            const busStopLabel = document.getElementById("busStopLabel");
-            const busStopSelect = document.getElementById("busStopSelect");
-
-            citySelect.addEventListener("change", showBusStopSelect);
-
-            const busStops = {
-                "Plantation": ["P001", "P002", "P003"],
-                "Sunrise": ["S001", "S002", "S003"],
-                "Weston": ["W001", "W002", "W003"],
-            };
-            // Function to set the initial state without a selected city
-            function initializeCitySelect() {
-                citySelect.selectedIndex = -1; // Unselect all options
-                busStopLabel.textContent = "Select a city:";
-                busStopSelect.style.display = "none";
-            }
-
-            // Call the initialization function when the page loads
-            initializeCitySelect();
-
-                    function showBusStopSelect() {
-                        const selectedCity = citySelect.value;
-                        busStopLabel.textContent = `Select a bus stop in your city:`;
-
-                        busStopSelect.innerHTML = ""; // Clear the existing options
-
-                        // Create a default "Choose a bus stop" option
-                        let defaultOption = document.createElement("option");
-                        defaultOption.value = "";
-                        defaultOption.textContent = "Choose a bus stop";
-                        busStopSelect.appendChild(defaultOption);
-
-                        const stops = busStops[selectedCity];
-                        if (stops) {
-                            for (let i = 0; i < stops.length; i++) {
-                                let option = document.createElement("option");
-                                option.value = stops[i];
-                                option.textContent = stops[i]; // Set the text content for the option
-                                busStopSelect.appendChild(option);
-                            }
-                            busStopSelect.style.display = "block"; // Show the bus stop select after adding options
-                        } else {
-                            busStopSelect.style.display = "none"; // Hide the bus stop select if there are no options
-                        }
-                    }
-            </script>
-                        <!--
-                            Now, we will prompt the user for two other cities / bus stops. 
-                            This will help us calculate the distance between the two points 
-                            that the user has entered.
-                        -->
-
-            <div id="content">
-                            <h2>Select your destination city:</h2>
-                            <select id="desSelect" name="descity">
-                                <option value="Plantation">Plantation</option>
-                                <option value="Sunrise">Sunrise</option>
-                                <option value="Weston">Weston</option>
-                            </select>
-                            
-                            <h2 id="desStopLabel">Select a bus stop in your destination city:</h2>
-
-                            <select id="desStopSelect" name="desStop" >
-                            <img src="map.PNG" />
-                            </select>
-                            <script>
-                                const desSelect = document.getElementById("desSelect");
-                                const desStopLabel = document.getElementById("desStopLabel");
-                                const desStopSelect = document.getElementById("desStopSelect");
-
-                                desSelect.addEventListener("change", showdesStopSelect);
-
-                                const desStops = {
-                                    "Plantation": ["P001", "P002", "P003"],
-                                    "Sunrise": ["S001", "S002", "S003"],
-                                    "Weston": ["W001", "W002", "W003"],
-                                };
-
-                                // Function to set the initial state without a selected city
-                                function initializeCitySelect() {
-                                    desSelect.selectedIndex = -1; // Unselect all options
-                                    desStopLabel.textContent = "Select a city:";
-                                    desStopSelect.style.display = "none";
-                                }
-
-                                // Call the initialization function when the page loads
-                                initializeCitySelect();
-
-                                function showdesStopSelect() {
-                                    const selecteddesCity = desSelect.value;
-                                    desStopLabel.textContent = `Select a bus stop in your city:`;
-
-                                    desStopSelect.innerHTML = ""; // Clear the existing options
-
-                                    // Create a default "Choose a bus stop" option
-                                    let defaultOption = document.createElement("option");
-                                    defaultOption.value = "";
-                                    defaultOption.textContent = "Choose a bus stop";
-                                    desStopSelect.appendChild(defaultOption);
-
-                                    const stops = busStops[selecteddesCity];
-                                    if (stops) {
-                                        for (let i = 0; i < stops.length; i++) {
-                                            let option = document.createElement("option");
-                                            option.value = stops[i];
-                                            option.textContent = stops[i]; // Set the text content for the option
-                                            desStopSelect.appendChild(option);
-                                        }
-                                        desStopSelect.style.display = "block"; // Show the bus stop select after adding options
-                                    } else {
-                                        desStopSelect.style.display = "none"; // Hide the bus stop select if there are no options
-                                    }
-                                }
-                            </script>
-            </div>
+            <p>New page here</p>
             </div>
         </div>
     </body>
